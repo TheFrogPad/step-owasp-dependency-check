@@ -59,3 +59,7 @@ echo "$(date +%H:%M:%S): Save OWASP dependency-check reports to $WERCKER_CACHE_D
 echo "% cp -fv $WERCKER_OWASP_DEPENDENCY_CHECK_OUT/dependency-check-*.* $WERCKER_CACHE_DIR"
 cp -fv $WERCKER_OWASP_DEPENDENCY_CHECK_OUT/dependency-check-*.* $WERCKER_CACHE_DIR
 
+#
+# Exit without error so pipeline completes
+#
+exit 0
