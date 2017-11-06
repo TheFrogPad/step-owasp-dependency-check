@@ -23,7 +23,7 @@ properties:
     required: false
   fail_on_cvss:
     type: string
-    default: 11
+    default: "11"
     required: false
   data:
     type: string

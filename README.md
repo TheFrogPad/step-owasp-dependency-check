@@ -23,7 +23,7 @@ To use the step, add the step to your pipeline (`wercker.yml`) with the appropri
         scan: $WERCKER_CACHE_DIR
         out: $WERCKER_CACHE_DIR
         format: ALL
-        fail_on_cvss: 5.0
+        fail_on_cvss: "5.0"
         data: $WERCKER_CACHE_DIR/owasp/
 ```
 

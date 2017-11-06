@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copyright 2017, Oracle and/or its affiliates. All rights reserved.
 
-echo "$(date +%H:%M:%S):  Running the OWASP cwdependency-check Wercker Step"
+echo "$(date +%H:%M:%S): Running the OWASP dependency-check Wercker Step"
 
 #
 # Check for required dependencies
@@ -32,7 +32,7 @@ if [ ! -d "$WERCKER_CACHE_DIR/owasp" ]; then
   echo "$(date +%H:%M:%S): Downloading OWASP dependency-check"
   curl -O -L https://dl.bintray.com/jeremy-long/owasp/dependency-check-3.0.1-release.zip
 
-  echo "$(date +%H:%M:%S):  Extracting OWASP dependency-check"
+  echo "$(date +%H:%M:%S): Extracting OWASP dependency-check"
   unzip -q dependency-check-3.0.1-release.zip -d $WERCKER_CACHE_DIR/owasp
   rm dependency-check-3.0.1-release.zip
 
@@ -49,6 +49,13 @@ fi
 #
 CHECK_CMD="$WERCKER_CACHE_DIR/owasp/dependency-check/bin/dependency-check.sh --project $WERCKER_OWASP_DEPENDENCY_CHECK_PROJECT --scan $WERCKER_OWASP_DEPENDENCY_CHECK_SCAN --out $WERCKER_OWASP_DEPENDENCY_CHECK_OUT --format $WERCKER_OWASP_DEPENDENCY_CHECK_FORMAT --failOnCVSS $WERCKER_OWASP_DEPENDENCY_CHECK_FAIL_ON_CVSS --data $WERCKER_OWASP_DEPENDENCY_CHECK_DATA"
 echo "$(date +%H:%M:%S): Running OWASP dependency-check with command:"
-echo $CHECK_CMD
+echo "% $CHECK_CMD"
 $CHECK_CMD
+
+#
+# Save OWASP dependency-check reports
+#
+echo "$(date +%H:%M:%S): Save OWASP dependency-check reports to $WERCKER_CACHE_DIR"
+echo "% cp dependency-check-*.* $WERCKER_CACHE_DIR"
+cp dependency-check-*.* $WERCKER_CACHE_DIR
 
