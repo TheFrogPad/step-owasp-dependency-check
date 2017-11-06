@@ -1,0 +1,31 @@
+name: owasp-dependency-check
+version: 0.1.0
+description: Run the OWASP dependency-check command line tool
+keywords:
+  - OWASP
+  - security
+properties:
+  project:
+    type: string
+    default: application
+    required: false
+  scan:
+    type: string
+    default: $WERCKER_CACHE_DIR
+    required: false
+  out:
+    type: string
+    default: $WERCKER_CACHE_DIR
+    required: false
+  format:
+    type: string
+    default: JSON
+    required: false
+  fail_on_cvss:
+    type: string
+    default: 11
+    required: false
+  data:
+    type: string
+    default: $WERCKER_CACHE_DIR/owasp/
+    required: false
