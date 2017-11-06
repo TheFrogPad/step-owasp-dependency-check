@@ -56,6 +56,6 @@ $CHECK_CMD
 # Save OWASP dependency-check reports
 #
 echo "$(date +%H:%M:%S): Save OWASP dependency-check reports to $WERCKER_CACHE_DIR"
-echo "% cp dependency-check-*.* $WERCKER_CACHE_DIR"
-cp dependency-check-*.* $WERCKER_CACHE_DIR
+echo "% cp -fv $WERCKER_OWASP_DEPENDENCY_CHECK_OUT/dependency-check-*.* $WERCKER_CACHE_DIR"
+cp -fv $WERCKER_OWASP_DEPENDENCY_CHECK_OUT/dependency-check-*.* $WERCKER_CACHE_DIR
 
