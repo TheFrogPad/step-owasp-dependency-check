@@ -68,6 +68,16 @@ echo "% $CHECK_CMD"
 $CHECK_CMD
 
 #
+# Check for error result from OWASP dependency-check
+#
+rc=$?
+if [[ $rc != 0 ]]; then
+  echo "$(date +%H:%M:%S): OWASP dependency-check reported status: $rc"
+  echo "$(date +%H:%M:%S): Check OWASP dependency-check reports in $WERCKER_OWASP_DEPENDENCY_CHECK_OUT"
+  exit $rc
+fi
+
+#
 # Done OWASP dependency-check reports
 #
 echo "$(date +%H:%M:%S): Saved OWASP dependency-check reports to $WERCKER_OWASP_DEPENDENCY_CHECK_OUT"
