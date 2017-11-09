@@ -19,17 +19,37 @@ To use the step, add the step to your pipeline (`wercker.yml`) with the appropri
 ```
   steps:
     - thefrogpad/owasp-dependency-check:
-        project: demo
+        project: application
         scan: $WERCKER_CACHE_DIR
         out: $WERCKER_CACHE_DIR
-        format: ALL
-        fail_on_cvss: "5.0"
+        format: JSON
+        fail_on_cvss: "11"
         data: $WERCKER_CACHE_DIR/owasp/
 ```
 
+_NOTE:_ The `fail_on_cvss` parameter should be an integer value between 0 and 10, the use of 11 means that no error status will be returned from running dependency-check and the step will complete successfully even when a vulnerability is detected.
+
 ### Parameters
 
-_TBD_
+Parameters are currently limited to the following and match the [OWASP dependency-check arguments](https://jeremylong.github.io/DependencyCheck/dependency-check-cli/arguments.html):
+
+* `project`
+<br>The name of the project being scanned
+
+* `scan`
+<br>The path to scan
+
+* `out`
+<br>The folder to write reports to
+
+* `format`
+<br>The output format to write to (XML, HTML, CSV, JSON, VULN, ALL)
+
+* `fail_on_cvss`
+<br>If the score is set between 0 and 10 the exit code from dependency-check will indicate if a vulnerability with a CVSS score equal to or higher was identified
+
+* `data`
+<br>The location of the data directory used to store persistent data
 
 ## Example
 
