@@ -36,17 +36,21 @@ else
 fi
 
 #
-# Download OWASP dependency-check when not already available
+# Download OWASP dependency-check when not already available, find latest version
 #
 
 if [ ! -d "$WERCKER_CACHE_DIR/owasp" ]; then
   mkdir $WERCKER_CACHE_DIR/owasp
   echo "$(date +%H:%M:%S): Downloading OWASP dependency-check"
-  curl $CURL_PROXY -O -L https://dl.bintray.com/jeremy-long/owasp/dependency-check-3.0.1-release.zip
+  curl $CURL_PROXY -o $WERCKER_CACHE_DIR/owasp/dependency-check_version.txt -L https://jeremylong.github.io/DependencyCheck/current.txt
+  version=$(cat $WERCKER_CACHE_DIR/owasp/dependency-check_version.txt)
+  file="dependency-check-$version-release.zip"
+  echo "$(date +%H:%M:%S): Downloading $file"
+  curl $CURL_PROXY -O -L https://dl.bintray.com/jeremy-long/owasp/$file
 
   echo "$(date +%H:%M:%S): Extracting OWASP dependency-check"
-  unzip -q dependency-check-3.0.1-release.zip -d $WERCKER_CACHE_DIR/owasp
-  rm dependency-check-3.0.1-release.zip
+  unzip -q $file -d $WERCKER_CACHE_DIR/owasp
+  rm $file
 
 else
   if [ ! -x "$WERCKER_CACHE_DIR/owasp/dependency-check/bin/dependency-check.sh" ] ; then
@@ -56,8 +60,6 @@ else
   fi
   echo "$(date +%H:%M:%S): OWASP dependency-check already present"
 fi
-
-
 
 #
 # Run OWASP dependency-check
