@@ -39,19 +39,19 @@ Parameters are currently limited to the following and match the [OWASP dependenc
 <br>The name of the project being scanned
 
 * `scan`
-<br>The path to scan
+<br>The folder or file to scan for vulnerabilities
 
 * `out`
-<br>The folder to write reports to
+<br>The output folder to write reports
 
 * `format`
-<br>The output format to write to (XML, HTML, CSV, JSON, VULN, ALL)
+<br>The output format of the report(s) (XML, HTML, CSV, JSON, VULN, ALL)
 
 * `fail_on_cvss`
 <br>If the score is set between 0 and 10 the exit code from dependency-check will indicate if a vulnerability with a CVSS score equal to or higher was identified
 
 * `data`
-<br>The location of the data directory used to store persistent data
+<br>The location of the data directory used to store persistent data that was downloaded during scanning (e.g. NVD data)
 
 ## Example
 
