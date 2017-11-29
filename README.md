@@ -2,6 +2,8 @@
 
 A wercker step to run the OWASP dependency-check tool standalone from the source build.
 
+_NOTE:_ The latest version of the dependency-check tool is downloaded to the wercker cache folder.
+
 ## OWASP dependency-check Information
 
 For more information on OWASP dependency-check tool please see the [OWASP website](https://www.owasp.org/index.php/OWASP_Dependency_Check) or [documentation on GitHub](https://jeremylong.github.io/DependencyCheck/)
